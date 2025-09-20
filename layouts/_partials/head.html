@@ -1,0 +1,21 @@
+{{- /* layouts/partials/head.html */ -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+
+{{ with .Site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{ end }}
+
+{{ with .Site.Params.author }}
+<meta name="author" content="{{ . }}">
+{{ end }}
+
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" type="image/x-icon">
+
+{{- $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- $markdown := resources.Get "css/markdown.css" | resources.Minify | resources.Fingerprint -}}
+<link rel="stylesheet" href="{{ $markdown.RelPermalink }}" integrity="{{ $markdown.Data.Integrity }}">

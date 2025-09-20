@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <article class="container">
+    <header>
+      <h1>{{ .Title }}</h1>
+      <p class="post-meta post-date">{{ .Date.Format "Jan 2, 2006" }}</p>
+    </header>
+
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.tags }}
+      <footer class="post-meta post-tags">
+        Tags:
+        {{ range $i, $t := . }}
+          {{ if $i }}, {{ end }}<a href="{{ "/tags/" | relURL }}{{ $t | urlize }}">{{ $t }}</a>
+        {{ end }}
+      </footer>
+    {{ end }}
+  </article>
+{{ end }}

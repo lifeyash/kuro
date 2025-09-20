@@ -1,0 +1,10 @@
+{{- /* layouts/partials/footer.html */ -}}
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</p>
+
+    {{ with .Site.Params.footer }}
+      <p class="site-footer-text">{{ . }}</p>
+    {{ end }}
+  </div>
+</footer>

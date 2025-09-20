@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+      {{ partial "header.html" . }}
+    </header>
+
+    <main id="content">
+      {{ block "main" . }}
+      <!-- Page-specific content will be injected here -->
+      {{ end }}
+    </main>
+
+    <footer>
+      {{ partial "footer.html" . }}
+    </footer>
+
+    {{ partial "head/js.html" . }}
+  </body>
+</html>

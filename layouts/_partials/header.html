@@ -1,0 +1,12 @@
+{{- /* layouts/partials/header.html */ -}}
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title">
+      <a href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    </h1>
+
+    {{ with .Site.Params.tagline }}
+      <p class="site-tagline">{{ . }}</p>
+    {{ end }}
+  </div>
+</header>
