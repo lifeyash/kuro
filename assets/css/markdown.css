@@ -4,7 +4,7 @@
    Description: Markdown content styles (posts & pages)
    =============================== */
 
-/* Wrapper for post content */
+/* ---------- Base ---------- */
 .markdown {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -12,44 +12,35 @@
   color: var(--color-text);
 }
 
-/* Headings */
+/* ---------- Headings ---------- */
 .markdown h1,
 .markdown h2,
-.markdown h3,
-.markdown h4,
-.markdown h5,
-.markdown h6 {
+.markdown {
   font-family: var(--font-heading);
   font-weight: 600;
   margin: 2rem 0 1rem;
   line-height: 1.3;
 }
 
-/* Paragraphs */
-.markdown p {
-  margin: 1rem 0;
-}
+/* ---------- Paragraphs ---------- */
+.markdown p { margin: 1rem 0; }
 
-/* Links */
+/* ---------- Links ---------- */
 .markdown a {
   color: var(--color-accent);
   text-decoration: none;
 }
-.markdown a:hover {
-  text-decoration: underline;
-}
+.markdown a:hover { text-decoration: underline; }
 
-/* Lists */
+/* ---------- Lists ---------- */
 .markdown ul,
 .markdown ol {
   margin: 1rem 0 1rem 1.5rem;
   padding: 0;
 }
-.markdown li {
-  margin: 0.25rem 0;
-}
+.markdown li { margin: 0.25rem 0; }
 
-/* Blockquotes */
+/* ---------- Blockquotes ---------- */
 .markdown blockquote {
   margin: 1.5rem 0;
   padding-left: 1rem;
@@ -58,21 +49,7 @@
   font-style: italic;
 }
 
-/* Code blocks */
-.markdown pre,
-.markdown code {
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-  background: rgba(0,0,0,0.05);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-.markdown pre {
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-/* Images */
+/* ---------- Images ---------- */
 .markdown img {
   max-width: 100%;
   height: auto;
@@ -80,7 +57,7 @@
   margin: 1rem 0;
 }
 
-/* Figures */
+/* ---------- Figures ---------- */
 .markdown figure {
   margin: 2rem 0;
   text-align: center;
@@ -90,4 +67,88 @@
   font-size: 0.875rem;
   opacity: 0.7;
   margin-top: 0.5rem;
+}
+
+/* ===============================
+   CODE & SYNTAX HIGHLIGHTING (fallback only)
+   =============================== */
+
+/* -------------------------------------------------
+   Updated code block styling – background stays
+   fixed while the code scrolls horizontally
+   ------------------------------------------------- */
+
+/* 1. Scroll container – <pre> */
+.markdown pre,
+pre {
+  overflow-x: auto;               /* enable horizontal scroll */
+  background: #f5f5f5;            /* light‑mode background */
+  border-radius: 6px;
+  padding: 1rem;                  /* space around the code */
+  margin: 0.3rem 0;
+  box-sizing: border-box;         /* include padding in width */
+}
+
+/* Dark‑mode background for the scroll container */
+@media (prefers-color-scheme: dark) {
+  .markdown pre,
+  pre {
+    background: #1e1e1e;
+  }
+}
+
+/* 2. Inner <code> – no background, no width 100% */
+.markdown pre code,
+pre code {
+  display: block;                 /* keep block formatting */
+  background: transparent;       /* inherit the <pre> background */
+  color: #111;                    /* light‑mode text color */
+  font-family: ui-monospace, SFMono-Regular,
+               Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;
+  line-height: inherit;
+  padding: 0;                     /* padding handled by <pre> */
+  margin: 0;                      /* margin handled by <pre> */
+}
+
+/* Dark‑mode text color */
+@media (prefers-color-scheme: dark) {
+  .markdown pre code,
+  pre code {
+    color: #f5f5f5;
+  }
+}
+
+/* -------------------------------------------------
+   Inline code – keep existing styling (unchanged)
+   ------------------------------------------------- */
+.markdown code,
+code {
+  display: inline-block;          /* inline‑style, not block */
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: inherit;
+}
+
+/* Dark‑mode inline code */
+@media (prefers-color-scheme: dark) {
+  .markdown code,
+  code {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+}
+
+/* -------------------------------------------------
+   Additional generic pre styling (kept for safety)
+   ------------------------------------------------- */
+.markdown pre,
+pre {
+  /* these rules are already covered above, but left here
+     in case other parts of the site rely on them */
+  padding: 0.8rem;
+  margin: 0.3rem 0;
 }
